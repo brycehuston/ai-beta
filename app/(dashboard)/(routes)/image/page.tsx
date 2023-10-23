@@ -4,7 +4,7 @@
 import axios from "axios";
 import * as z from "zod";
 import { Heading } from "@/components/heading";
-import { Code, Download, ImageIcon, MessageSquare } from "lucide-react";
+import { Download, ImageIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { amountOptions, formSchema, resolutionOptions } from "./constant";
 import { zodResolver } from "@hookform/resolvers/zod";

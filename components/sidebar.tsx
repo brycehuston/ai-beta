@@ -3,13 +3,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Montserrat } from "next/font/google";
 import { ImageIcon, LayoutDashboard, MessageSquare, VideoIcon, Music, Code, Settings,  } from "lucide-react";
 
 
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { getApiLimitCount } from "@/lib/api-limit";
 import { FreeCounter } from "./free-counter";
 const montserrat = {
   fontFamily: "Montserrat",
