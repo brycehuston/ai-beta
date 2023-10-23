@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import * as z from "zod";
 import { Heading } from "@/components/heading";
-import { MessageSquare, Music } from "lucide-react";
+import { MessageSquare, Music, VideoIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constant";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -61,7 +61,7 @@ const VideoPage = () => {
              <Heading
                  title="Video Generation"
                  description="Turn your prompt into video"
-                 icon={Music}
+                 icon={VideoIcon}
                  iconColor="text-orange-700"
                  bgColor="bg-orange-700/10"
              />

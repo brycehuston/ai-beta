@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+
 import axios from "axios";
 import * as z from "zod";
 import { Heading } from "@/components/heading";
@@ -23,6 +23,7 @@ import { BotAvatar } from "@/components/bot-avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const ImagePage = () => {
     const router = useRouter();
@@ -50,7 +51,7 @@ const ImagePage = () => {
         } catch (error: any) {
             console.log(error);
         } finally {
-            router.reload();
+            router.refresh();
         }
     };
 
@@ -81,7 +82,81 @@ const ImagePage = () => {
                                 gap-2
                             "
                         >
-                            {/* ... rest of your form code */}
+            <FormField
+              name="prompt"
+              render={({ field }) => (
+                <FormItem className="col-span-12 lg:col-span-6">
+                  <FormControl className="m-0 p-0">
+                    <Input
+                      className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                      disabled={isLoading} 
+                      placeholder="A picture of a horse in Swiss alps" 
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="amount"
+              render={({ field }) => (
+                <FormItem className="col-span-12 lg:col-span-2">
+                  <Select 
+                    disabled={isLoading} 
+                    onValueChange={field.onChange} 
+                    value={field.value} 
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue defaultValue={field.value} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {amountOptions.map((option) => (
+                        <SelectItem 
+                          key={option.value} 
+                          value={option.value}
+                        >
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="resolution"
+              render={({ field }) => (
+                <FormItem className="col-span-12 lg:col-span-2">
+                  <Select 
+                    disabled={isLoading} 
+                    onValueChange={field.onChange} 
+                    value={field.value} 
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue defaultValue={field.value} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {resolutionOptions.map((option) => (
+                        <SelectItem 
+                          key={option.value} 
+                          value={option.value}
+                        >
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
                             <Button className="col-span-12 lg:col-span-2" disabled={isLoading}>Generate</Button>
                         </form>
                     </Form>
@@ -101,7 +176,6 @@ const ImagePage = () => {
                                 key={src}
                                 className="rounded-lg overflow-hidden"
                             >
-                                {/* Fixed missing '>' and 'layout' prop for Image component */}
                                 <div className="relative aspect-square">
                                     <Image
                                         alt="Image"
@@ -109,7 +183,6 @@ const ImagePage = () => {
                                         src={src}
                                     />
                                 </div>
-                                {/* Fixed typo in 'className' and missing '>' in Button component */}
                                 <CardFooter className="p-2">
                                     <Button
                                     onClick={() => window.open(src)}
