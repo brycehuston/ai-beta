@@ -51,7 +51,7 @@ export async function POST(
       await increaseApiLimit();
     }
 
-    return NextResponse.json(response.choices[0].images);
+    return NextResponse.json(response);
   } catch (error) {
     console.log("[Image_ERROR]" , error);
     return new NextResponse("Internal Error", { status: 500 });
