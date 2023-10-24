@@ -1,22 +1,21 @@
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import Sidebar from "@/components/sidebar";
+import { UserButton } from "@clerk/nextjs";
 
+import { MobileSidebar } from "@/components/mobile-sidebar";
+import { getApiLimitCount } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
-const MobileSidebar = () => {
-  return (
-    <Sheet>
-      <SheetTrigger>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu />
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left" className="p-0">
-        <Sidebar apiLimitCount={2} isPro={false} />
-      </SheetContent> 
-    </Sheet>
-  );
-};
+const Navbar = async () => {
+  const apiLimitCount = await getApiLimitCount();
+  const isPro = await checkSubscription();
 
-export default MobileSidebar;
+  return ( 
+    <div className="flex items-center p-4">
+      <MobileSidebar isPro={isPro} apiLimitCount={apiLimitCount} />
+      <div className="flex w-full justify-end">
+        <UserButton afterSignOutUrl="/" />
+      </div>
+    </div>
+   );
+}
+ 
+export default Navbar;

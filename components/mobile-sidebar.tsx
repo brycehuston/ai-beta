@@ -1,18 +1,20 @@
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"; // Corrected the path
-import Sidebar from "./sidebar";
-import { useEffect, useState } from "react";
+"use client";
 
-interface MobileSidebarProps {
+import { useEffect, useState } from "react";
+import { Menu } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Sidebar from "./sidebar";
+
+
+export const MobileSidebar = ({
+  apiLimitCount = 0,
+  isPro = false
+}: {
   apiLimitCount: number;
   isPro: boolean;
-}
-
-const MobileSidebar = ({
-   apiLimitCount = 0,
-   isPro = false
-  }: MobileSidebarProps) => {
+}) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -36,5 +38,3 @@ const MobileSidebar = ({
     </Sheet>
   );
 };
-
-export default MobileSidebar;
