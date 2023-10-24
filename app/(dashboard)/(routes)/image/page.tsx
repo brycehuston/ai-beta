@@ -94,7 +94,7 @@ const ImagePage = () => {
                     <Input
                       className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                       disabled={isLoading} 
-                      placeholder="A picture of a horse in Swiss alps" 
+                      placeholder="White horses running in space, beautiful, High quality, perfect, award winning, national geographic" 
                       {...field}
                     />
                   </FormControl>
