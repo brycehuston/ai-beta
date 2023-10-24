@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import * as z from "zod";
 import { Heading } from "@/components/heading";
-import { VideoIcon } from "lucide-react";
+import { VideoIcon, Settings} from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constant";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -43,7 +43,7 @@ const VideoPage = () => {
 
             const response = await axios.post("/api/video", values);
 
-            setVideo(response.data.audio[1])
+            setVideo(response.data[0])
             form.reset();
         } catch (error: any) {
             if (error?.response?.status === 403) {
@@ -115,7 +115,15 @@ const VideoPage = () => {
                         )}
                     </div>
                 </div>
+                <Heading
+                 title="This May Take A Moment"
+                 description="Be Patient.. PRO TIP: The more detailed the prompt the better the result. Ex. Clown fish swimming in a coral reef, beautiful, 8k, perfect, award winning, national geographic"
+                 icon={Settings}
+                 iconColor="text-black-700"
+                 bgColor="bg-white-700/10"
+             />
              </div>
+             
     )
 }
 

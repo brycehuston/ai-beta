@@ -11,7 +11,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChatCompletionMessage } from "openai/resources/chat/index.mjs";
 import ReactMarkdown from "react-markdown";
 import { useState } from "react";
 import OpenAI from "openai";
@@ -38,6 +37,7 @@ const ImagePage = () => {
             resolution: "512x512"
         }
     });
+    
     const isLoading = form.formState.isSubmitting;
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -183,13 +183,13 @@ const ImagePage = () => {
                                 <div className="relative aspect-square">
                                     <Image
                                         alt="Image"
-                                        layout="fill"  
+                                        fill  
                                         src={src}
                                     />
                                 </div>
                                 <CardFooter className="p-2">
                                     <Button
-                                    onClick={() => window.open(src)}
+                                        onClick={() => window.open(src)}
                                         variant="secondary"
                                         className="w-full"
                                     >

@@ -45,7 +45,7 @@ export async function POST(
     });
     
     if (!isPro) {
-      await increaseApiLimit();
+      await increaseApiLimit(); 
     }
 
     return NextResponse.json(response.choices[0].message);
